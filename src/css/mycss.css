@@ -1,0 +1,40 @@
+.red {
+    border-radius: 120px;
+    opacity: .8;
+    background-color: #f2a072;
+    border-style: solid;
+    border-color: #f25530;
+    font-size: 12px;
+    text-align: center;
+}
+.blue {
+    border-radius: 120px;
+    opacity: .75;
+    background-color: #0000FF;
+}
+.office{
+    border-radius: 120px;
+    opacity: .9;
+    background-color: #0000ff;
+    border-style: solid;
+    border-color: #2010d4;
+    font-size: 12px;
+    text-align: center;
+}
+.selected {
+    border-radius: 120px;
+    opacity: 1.0;
+    background-color: #000000;
+    border-style: solid;
+    border-color: #000000;
+    font-size: 12px;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold; 
+}
+.selected1 {
+    border-color: #000000;
+    border-width: 8;
+    font-weight: bolder;
+    font-size: 1.2em;
+}

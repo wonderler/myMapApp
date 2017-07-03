@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html ng-app="mapapp">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    <script src="js/jquery/external/jquery/jquery.js"></script>
+    <script src="js/jquery/jquery-ui.min.js"</script>
+    -->
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/leaflet/leaflet.js"></script>
+    <script src="js/leaflet/leaflet-heat.js"></script>
+    <script src="js/dist/angular-leaflet-directive.min.js"></script>
+    <script src="bootstrap/js/sortable.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="js/myscript.js"></script>
+    <style>
+        .red {
+            border-radius: 120px;
+            opacity: .8;
+            background-color: #f2a072;
+            border-style: solid;
+            border-color: #f25530;
+            font-size: 12px;
+            text-align: center;
+        }
+        .blue {
+            border-radius: 120px;
+            opacity: .75;
+            background-color: #0000FF;
+        }
+        .selected {
+            border-radius: 120px;
+            opacity: 1.0;
+            background-color: #000000;
+            border-style: solid;
+            border-color: #000000;
+            font-size: 12px;
+            color: #ffffff;
+            text-align: center;
+            font-weight: bold; 
+        }
+        .selected1 {
+            border-color: #000000;
+            border-width: 8;
+            font-weight: bolder;
+            font-size: 1.2em;
+        }
+    </style>
+  </head>
+
+  <body ng-controller="mapController">
+    <div class = "well">
+      <h1>Openstreetmap</h1>
+    </div>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4"　height="480px">
+        <button class="btn btn-primary btn-sm" ng-click="removeMarkers()">Remove markers</button>
+        <div class="table-responsive" style="overflow: scroll; height: 550px;">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr><th></th><th>check</th><th>id</th><th>latitude</th><th>longitude</th></tr>
+          </thead>
+          <tbody ui-sortable="ctrl.sortableOptions">
+              <tr ng-repeat="marker in markers">
+              <td data-js="drag__handle"><span class="glyphicon glyphicon-menu-hamburger"></span></td>
+              <td><input type="checkbox" checked="true" ng-change="onCheckChange({{marker}})" ng-model="marker.visible" ng-checked="marker.visible"></td>
+              <td>{{marker.id}}</td>
+              <td>{{marker.lat | number:3}}</td>
+              <td>{{marker.lng | number:3}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <leaflet lf-center="center" event-broadcast="events" layers="layers" controls="controls" markers="markers" paths="paths" width="100%" height="550px"></leaflet>
+        <div class="row">
+          <div class="col-sm-6">
+            <span>center [lat:{{center.lat | number:3}} / lon:{{center.lng | number:3}}]</span>
+          </div>
+          <div class="col-sm-6">
+            <span>mouse [lat:{{mousePosition.lat | number:3}} / lon:{{mousePosition.lng | number:3}}]</span>
+          </div>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>
